@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  ai-product-advisor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-product-advisor
+    ports:
+      - "8888:8888"  # Jupyter Notebook
+      - "11434:11434"  # Ollama API
+    volumes:
+      # Mount notebook for live editing
+      - ./day2 EXERCISE.ipynb:/app/notebook.ipynb
+      # Persist Ollama models (so you don't re-download on restart)
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    deploy:
+      resources:
+        limits:
+          memory: 16G  # Adjust based on your model size
+        reservations:
+          memory: 8G
+    restart: unless-stopped
+    networks:
+      - ai-network
+
+volumes:
+  ollama-data:
+    driver: local
+
+networks:
+  ai-network:
+    driver: bridge
+

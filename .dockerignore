@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ollama models (will be downloaded in container)
+.ollama/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Other notebooks (only include the main one)
+day2*.ipynb
+
